@@ -56,6 +56,13 @@
 					</connectors>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>in.xnnyygn.hako</groupId>
+				<artifactId>maven-porter-plugin</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<configuration>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
