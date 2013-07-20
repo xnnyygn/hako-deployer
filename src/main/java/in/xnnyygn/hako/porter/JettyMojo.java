@@ -24,6 +24,9 @@ public class JettyMojo extends AbstractMojo {
   @Parameter(defaultValue = "/${project.artifactId}")
   private String contextPath;
 
+	@Parameter(defaultValue = "src/main/webapp")
+	private String webRoot;
+
   @Parameter(defaultValue = "${project.runtimeClasspathElements}")
   private List<String> projectRuntimeClassPathElements;
 
@@ -41,8 +44,7 @@ public class JettyMojo extends AbstractMojo {
   private WebAppContext createWebApp() {
     getLog().info("set context path to [" + contextPath + "]");
     WebAppContext context = new WebAppContext();
-    context.setDescriptor("src/main/webapp/WEB-INF/web.xml");
-    context.setResourceBase("src/main/webapp");
+    context.setResourceBase(webRoot);
     context.setContextPath(contextPath);
 		String projectClassPath = joinClassPath(projectRuntimeClassPathElements);
 		getLog().info(projectClassPath);
