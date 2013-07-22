@@ -46,18 +46,24 @@ public class JettyMojo extends AbstractMojo {
     WebAppContext context = new WebAppContext();
     context.setResourceBase(webRoot);
     context.setContextPath(contextPath);
+		debugRuntimeClassPathElements();
 		String projectClassPath = joinClassPath(projectRuntimeClassPathElements);
-		getLog().info(projectClassPath);
     context.setExtraClasspath(projectClassPath);
     return context;
   }
+
+	private void debugRuntimeClassPathElements() {
+		getLog().debug("Jetty Extra Class Path");
+		for(String element : projectRuntimeClassPathElements) {
+			getLog().debug(element);
+		}
+	}
 
   private String joinClassPath(List<String> paths) {
 		StringBuilder pathBuilder = new StringBuilder();
 		for(String path : paths) {
 			pathBuilder.append(path).append(',');
 		}
-		if(!paths.isEmpty()) pathBuilder.deleteCharAt(pathBuilder.length() - 1);
 		return pathBuilder.toString();
 	}
 
